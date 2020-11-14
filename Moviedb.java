@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,22 +5,22 @@ import java.util.Scanner;
 public class Moviedb {
     public static void main(String[] args) {
         Users a = new Users();
+        Movies m = new Movies();
+        Ratings r = new Ratings();
+        moviefunction(m);
         userfunction(a);
+        ratingfunction(r);
         menu();
     }
 
     public static void userfunction(Users a) {
-        
-        try {
-            BufferedReader userReader = new BufferedReader(new FileReader("data/users.dat"));
-            a.openUserFile(userReader);
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("File Not Found");
-        }
+        a.openUserFile();
     }
-    private static void moviefunction() {
-
+    private static void moviefunction(Movies m) {
+        m.openMovieFile();
+    }
+    private static void ratingfunction(Ratings r){
+        r.openRatingFile();
     }
 
     private static void displaymenu()
@@ -45,7 +42,7 @@ public class Moviedb {
     public static void menu() {
         Scanner menuin = new Scanner(System.in);
         boolean menuloop = true;
-        while (menuloop == true)
+        while (menuloop)
         {
             displaymenu();
             try

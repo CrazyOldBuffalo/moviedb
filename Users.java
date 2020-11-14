@@ -1,15 +1,25 @@
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class Users {
-    private int userId;
+    private int userId, userage;
+    private String userGender, userOccup, userZip;
 
-    public void openUserFile(BufferedReader userReader)
+    public void openUserFile()
     {
-        System.out.println("User File Opened Successfully");
+        try {
+            BufferedReader userReader = new BufferedReader(new FileReader("data/users.dat"));
+            System.out.println("User File Opened Successfully");
+            readUserFile(userReader);
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("File Failed to Open");
+        }
     }
 
-    public void readfile(BufferedReader userReader) throws IOException{
+    public void readUserFile(BufferedReader userReader) throws IOException{
             String line;
             while ((line = userReader.readLine()) != null) {
                 String[] Userinputs = parseLine(line);
@@ -18,28 +28,14 @@ public class Users {
                 String gender = Userinputs[2];
                 String occupation = Userinputs[3];
                 String zip = Userinputs[4];
-                System.out.println(id + age + gender + occupation + zip);
             }
             userReader.close();
     }
+
+    
 
     private String[] parseLine(String line) {
         return line.split("::|\t|\\|");
 
     }
-
-    //public void getuserFile(){
-        
-   //     a.getuserFile();
-   //     while ((line = userReader.readLine()) != null)
-    //        {
-    //            String[] data = parseLine(line);
-    //            String id = data[0]; 
-    //            System.out.println(id);
-    //        }
-    //        userReader.close();
-    //    }
-    //    catch (IOException e) {
-   //     System.out.println("File Not Found");
-    //    }
 }
