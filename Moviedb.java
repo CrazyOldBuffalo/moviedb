@@ -7,6 +7,7 @@ public class Moviedb {
         Users a = new Users();
         Movies m = new Movies();
         Ratings r = new Ratings();
+        
         moviefunction(m);
         userfunction(a);
         ratingfunction(r);
@@ -14,7 +15,7 @@ public class Moviedb {
     }
 
     public static void userfunction(Users a) {
-        a.openUserFile();
+        a.buildUsers();
     }
     private static void moviefunction(Movies m) {
         m.openMovieFile();

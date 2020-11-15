@@ -23,9 +23,6 @@ public class Ratings {
             int movieid = Integer.parseInt(ratingInputs[1]);
             int rating = Integer.parseInt(ratingInputs[2]);
             int timestamp = Integer.parseInt(ratingInputs[3]);
-
-            System.out.println(userid + " " + movieid + " " + rating + " " + timestamp);
-
         }
     }
 
