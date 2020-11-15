@@ -1,5 +1,3 @@
-import static java.lang.Integer.parseInt;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -37,16 +35,16 @@ public class Users {
 
     public void buildUsers() {
         try {
-            openUserFile();
-            System.out.println("User File Opened Successfully");
             readUserFile();
-            System.out.println("User File Read Successfully");
+            System.out.println("User File Opened Successfully");
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException fe) {
             System.out.println("File Not Found");
         }
         catch (IOException ie) {
             System.out.println("IO Error");
         }
     }
+
+
 }

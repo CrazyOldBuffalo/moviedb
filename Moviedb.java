@@ -18,10 +18,10 @@ public class Moviedb {
         a.buildUsers();
     }
     private static void moviefunction(Movies m) {
-        m.openMovieFile();
+        m.buildMovies();
     }
     private static void ratingfunction(Ratings r){
-        r.openRatingFile();
+        r.buildRatings();
     }
 
     private static void displaymenu()
