@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Ratings {
-    private BufferedReader openRatingFile() throws FileNotFoundException{
+    private static BufferedReader openRatingFile() throws FileNotFoundException{
         return new BufferedReader(new FileReader("data/ratings.dat"));
     }
 
-    private Map readRatingsFile() throws IOException{
+    private static Map readRatingsFile() throws IOException{
         Map <Integer, Ratings> ratings = new HashMap<Integer, Ratings>();
         BufferedReader ratingsReader = openRatingFile();
         String line = null;
@@ -23,14 +23,15 @@ public class Ratings {
             int rating = Integer.parseInt(ratingInputs[2]);
             int timestamp = Integer.parseInt(ratingInputs[3]);
         }
+        ratingsReader.close();
         return ratings;
     }
 
-    private String[] parseline(String line) {
+    private static String[] parseline(String line) {
         return line.split("::|\t|\\|");
     }
 
-    public void buildRatings() {
+    public static void buildRatings() {
         try {
             readRatingsFile();
             System.out.println("Ratings File Opened Successfully");

@@ -3,25 +3,21 @@ import java.util.Scanner;
 
 
 public class Moviedb {
-    public static void main(String[] args) {
-        Users a = new Users();
-        Movies m = new Movies();
-        Ratings r = new Ratings();
-        
-        moviefunction(m);
-        userfunction(a);
-        ratingfunction(r);
+    public static void main(String[] args) {        
+        moviefunction();
+        userfunction();
+        ratingfunction();
         menu();
     }
 
-    public static void userfunction(Users a) {
-        a.buildUsers();
+    public static void userfunction() {
+        Users.buildUsers();
     }
-    private static void moviefunction(Movies m) {
-        m.buildMovies();
+    private static void moviefunction() {
+        Movies.buildMovies();
     }
-    private static void ratingfunction(Ratings r){
-        r.buildRatings();
+    private static void ratingfunction(){
+        Ratings.buildRatings();
     }
 
     private static void displaymenu()

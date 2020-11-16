@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class Users {
 
-    private BufferedReader openUserFile() throws FileNotFoundException {
+    private static BufferedReader openUserFile() throws FileNotFoundException {
         return new BufferedReader(new FileReader("data/users.dat"));
     }
 
-    private Map readUserFile() throws IOException{
+    private static Map readUserFile() throws IOException{
         Map<Integer,Users> users = new HashMap<Integer,Users>();
         BufferedReader userReader = openUserFile();
         String line = null;
@@ -24,16 +24,16 @@ public class Users {
             String userOccup = userInput[3];
             String userZip = userInput[4];
         }
+        userReader.close();
         return users;
     }
     
 
-    private String[] parseLine(String line) {
+    private static String[] parseLine(String line) {
         return line.split("::|\t|\\|");
-
     }
 
-    public void buildUsers() {
+    public static void buildUsers() {
         try {
             readUserFile();
             System.out.println("User File Opened Successfully");
