@@ -7,36 +7,38 @@ public class Moviedb {
     public static void main(String[] args) {        
         moviefunction();
         userfunction();
-        ratingfunction();
+        //ratingfunction();
         menu();
     }
 
     public static void userfunction() {
         Users.buildUsers();
     }
+    
+    private static Scanner MenuScanner() {
+        return new Scanner(System.in);
+    }
 
     public static void userSearch() {
         try {
-            Scanner uSearchScanner = new Scanner(System.in);
-            int uSearchTerm = uSearchScanner.nextInt();
-            uSearchScanner.close();
-            Users.uSearch(uSearchTerm);
+            Users.uSearch();
         }
-        catch (IOException ioe) {
-            System.out.println("Operation Failed");
+        catch (IOException ioe)
+        {
+            System.out.println("IO Error" );
         }
     }
 
     public static void moviefunction() {
         Movies.buildMovies();
     }
-    public static void ratingfunction(){
-        Ratings.buildRatings();
-    }
+    //public static void ratingfunction(){
+    //    Ratings.buildRatings();
+    //}
 
     private static void displaymenu()
     {
-        String menuline = "*****************";
+        String menuline = "**********************";
         System.out.println(menuline);
         System.out.println("Movie DB");
         System.out.println("Main Menu");
@@ -51,7 +53,7 @@ public class Moviedb {
     }
 
     public static void menu() {
-        Scanner menuin = new Scanner(System.in);
+        Scanner menuin = MenuScanner();
         boolean menuloop = true;
         while (menuloop)
         {
@@ -63,21 +65,25 @@ public class Moviedb {
                 {
                     System.out.println("User Search");
                     userSearch();
+                    menuloop = false;
                     break;
                 }
                 else if (choice == 2)
                 {
                     System.out.println("Movie Search");
+                    menuloop = false;
                     break;
                 }
                 else if (choice == 3)
                 {
                     System.out.println("Ratings");
+                    menuloop = false;
                     break;
                 }
                 else if (choice == 4)
                 {
                     System.out.println("Quitting");
+                    menuloop = false;
                     System.exit(1);
                 }
                 else {
