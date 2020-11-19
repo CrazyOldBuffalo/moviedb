@@ -31,7 +31,7 @@ public class Users {
     }
 
     // Method for Reading File, Creates an instance of the Map & Reader for use
-    private static Map readUserFile() throws IOException{
+    private static Map<Integer, Users> readUserFile() throws IOException{
         Map<Integer,Users> userMap = new HashMap<Integer,Users>();
         BufferedReader userReader = openUserFile();
         String line = null;
@@ -113,7 +113,7 @@ public class Users {
     // Creates an instance of the map, takes a user input and checks if the map contains that input
     // If it does, a method collects the details of the object from the map and outputs it
     public static void uSearch() throws IOException{
-        Map userMap = readUserFile();
+        Map<Integer, Users> userMap = readUserFile();
         Scanner uSearch = searchScanner();
         System.out.println(USERLINE);
         System.out.println("Enter the User ID: ");
