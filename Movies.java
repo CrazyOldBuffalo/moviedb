@@ -29,10 +29,11 @@ public class Movies {
             int movieId = Integer.parseInt(movieInputs[0]);            
             String movieName = movieInputs[1];
             String movieDate = movieInputs[2];
-            Movies m = new Movies(movieId, movieName, movieDate);
-            movieMap.put(movieId, m);
+            String url = movieInputs[3];
+            movieMap.put(movieId, new Movies(movieId, movieName, movieDate));
         }
-        System.out.println(movieMap.get(1));
+        String getMovie = movieMap.get(1).movieName;
+        System.out.println(getMovie);
         movieReader.close();
         return movieMap;
     }

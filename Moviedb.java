@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,10 +14,20 @@ public class Moviedb {
     public static void userfunction() {
         Users.buildUsers();
     }
-    private static void moviefunction() {
+
+    public static void userSearch() {
+        try {
+            Users.uSearch();
+        }
+        catch (IOException ioe) {
+            System.out.println("Operation Failed");
+        }
+    }
+
+    public static void moviefunction() {
         Movies.buildMovies();
     }
-    private static void ratingfunction(){
+    public static void ratingfunction(){
         Ratings.buildRatings();
     }
 
@@ -49,6 +60,7 @@ public class Moviedb {
                 {
                     System.out.println("User Search");
                     menuin.close();
+                    userSearch();
                     break;
                 }
                 else if (choice == 2)
