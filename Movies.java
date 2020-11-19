@@ -6,13 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Movies {
-    int movieId;
-    String movieName, movieDate;
+    private int movieId;
+    private String movieName;
+    private String movieDate;
+    private String movieUrl;
+    private String movieGenre;
 
-    public Movies(int movieID, String movieNam, String movieD) {
-        movieId = movieID;
-        movieName = movieNam;
-        movieDate = movieD;
+    public Movies(int id, String name, String date, String url) {
+        movieId = id;
+        movieName = name;
+        movieDate = date;
+        movieUrl = url;
+        //movieGenre = genre;
     }
 
     private static BufferedReader openMovieFile() throws FileNotFoundException {
@@ -29,8 +34,10 @@ public class Movies {
             int movieId = Integer.parseInt(movieInputs[0]);            
             String movieName = movieInputs[1];
             String movieDate = movieInputs[2];
-            String url = movieInputs[3];
-            movieMap.put(movieId, new Movies(movieId, movieName, movieDate));
+            String movieUrl = movieInputs[4];
+
+            
+            movieMap.put(movieId, new Movies(movieId, movieName, movieDate, movieUrl));
         }
         String getMovie = movieMap.get(1).movieName;
         System.out.println(getMovie);

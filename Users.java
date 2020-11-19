@@ -52,27 +52,34 @@ public class Users {
         return userMap;
     }
     
+    // Takes the line input and performs a .split to seperate the data
     private static String[] parseLine(String line) {
         return line.split("::|\t|\\|");
     }
 
+    // Creates a new instance of an input scanner for the user Re-search Method
     private static Scanner uSearchScanner() {
         return new Scanner(System.in);
     }
 
-    private static Scanner SearchScanner() {
+    // Creates a new instance of an input scanner for the search Method
+    private static Scanner searchScanner() {
         return new Scanner(System.in);
     }
 
+    // Method that checks if the user would like to search for a user id again
     private static void uSearchAgain() {
         System.out.println(USERLINE);
         System.out.println("Would You Like to Search Again?     Y/N");
         System.out.println(USERLINE);
         boolean uResearchloop = true;
+        // Loop ensures correct input before moving to next method
         while(uResearchloop)
         {
             Scanner uResearchScanner = uSearchScanner();
+            // Converts userinput to lower so only one condition has to be checked for
             String uResearch = uResearchScanner.nextLine().toLowerCase();
+            // Allows user to search again
             if (uResearch.equals("y"))
             {
                 System.out.println("Yes");
@@ -80,27 +87,34 @@ public class Users {
                 try {
                     uSearch();
                 }
+                //If a IOException is caught Prints an error and sends the user back to the menu
                 catch (IOException ioe)
                 {
                     System.out.println("Error Occurrred");
+                    uResearchloop = false;
                     Moviedb.menu();
                 }
                 
             }
+            // Returns user to the menu
             else if (uResearch.equals("n"))
             {
-                Moviedb.menu();
                 System.out.println("No");
+                uResearchloop = false;
+                Moviedb.menu();
             }
+            // An input that doesn't match sends the user back to the start of the loop
             else {
                 System.out.println("Please Enter Either Y or N");
             }
         }
     }
     
+    // Creates an instance of the map, takes a user input and checks if the map contains that input
+    // If it does, a method collects the details of the object from the map and outputs it
     public static void uSearch() throws IOException{
         Map userMap = readUserFile();
-        Scanner uSearch = SearchScanner();
+        Scanner uSearch = searchScanner();
         System.out.println(USERLINE);
         System.out.println("Enter the User ID: ");
         System.out.println(USERLINE);
@@ -124,6 +138,7 @@ public class Users {
 
     }
 
+    // Public Getter Methods for accessing object data
     public int getId() {
         return this.userId;
     }
@@ -144,6 +159,9 @@ public class Users {
         return this.userZip;
     }
 
+    // Public method for opening and reading the user file and creating objects
+    // Accessed in the Main, catches any errors from running the function
+    // and Outputs an error before quitting
     public static void buildUsers() {
         try {
             readUserFile();
@@ -151,9 +169,11 @@ public class Users {
         }
         catch (FileNotFoundException fe) {
             System.out.println("File Not Found");
+            System.exit(0);
         }
         catch (IOException ie) {
             System.out.println("IO Error");
+            System.exit(0);
         }
     }
 }
