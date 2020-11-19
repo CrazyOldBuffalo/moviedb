@@ -17,7 +17,10 @@ public class Moviedb {
 
     public static void userSearch() {
         try {
-            Users.uSearch();
+            Scanner uSearchScanner = new Scanner(System.in);
+            int uSearchTerm = uSearchScanner.nextInt();
+            uSearchScanner.close();
+            Users.uSearch(uSearchTerm);
         }
         catch (IOException ioe) {
             System.out.println("Operation Failed");
@@ -59,26 +62,22 @@ public class Moviedb {
                 if (choice == 1)
                 {
                     System.out.println("User Search");
-                    menuin.close();
                     userSearch();
                     break;
                 }
                 else if (choice == 2)
                 {
                     System.out.println("Movie Search");
-                    menuin.close();
                     break;
                 }
                 else if (choice == 3)
                 {
                     System.out.println("Ratings");
-                    menuin.close();
                     break;
                 }
                 else if (choice == 4)
                 {
                     System.out.println("Quitting");
-                    menuin.close();
                     System.exit(1);
                 }
                 else {

@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Users {
     // Variables to store data for each class
@@ -51,14 +52,23 @@ public class Users {
         return line.split("::|\t|\\|");
     }
 
-    public static void uSearch() throws IOException{
+    public static void uSearch(int uSearchId) throws IOException{
         Map userMap = readUserFile();
-        int outId = ((Users) userMap.get(1)).getId();
-        int outAge = ((Users) userMap.get(1)).getAge();
-        String outGender = ((Users) userMap.get(1)).getGender();
-        String outOccup = ((Users) userMap.get(1)).getOccup();
-        String outZip = ((Users) userMap.get(1)).getZip();
-        System.out.println("User ID: " + outId + "\n" + "User Age: " + outAge + "\n" + "User Gender: " + outGender + "\n" + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip);
+        if (userMap.containsKey(uSearchId))
+        {
+            System.out.println("");
+            int outId = ((Users) userMap.get(uSearchId)).getId();
+            int outAge = ((Users) userMap.get(uSearchId)).getAge();
+            String outGender = ((Users) userMap.get(uSearchId)).getGender();
+            String outOccup = ((Users) userMap.get(uSearchId)).getOccup();
+            String outZip = ((Users) userMap.get(uSearchId)).getZip();
+            System.out.println("User ID: " + outId + "\n" + "User Age: " + outAge + "\n" + "User Gender: " + outGender + "\n" + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip);
+        }
+        else {
+            System.out.println("Not found");
+        }
+        
+
     }
 
     public int getId() {
