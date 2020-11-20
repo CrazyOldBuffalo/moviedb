@@ -170,6 +170,7 @@ public class Movies {
         if (moviesMap.containsKey(mSearchId))
         {
             System.out.println("Movie Id Found");
+            System.out.println(MOVIELINE);
             System.out.println("Movie Id: " + moviesMap.get(mSearchId).getID());
             System.out.println("Movie Name: " + moviesMap.get(mSearchId).getName());
             System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
