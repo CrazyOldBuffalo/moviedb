@@ -29,6 +29,16 @@ public class Moviedb {
         }
     }
 
+    public static void menuSearch() {
+        try {
+            Movies.mSearch();
+        }
+        catch (IOException mioe)
+        {
+            System.out.println("IO Error");
+        }
+    }
+
     public static void moviefunction() {
         Movies.buildMovies();
     }
@@ -64,14 +74,15 @@ public class Moviedb {
                 if (choice == 1)
                 {
                     System.out.println("User Search");
-                    userSearch();
                     menuloop = false;
+                    userSearch();
                     break;
                 }
                 else if (choice == 2)
                 {
                     System.out.println("Movie Search");
                     menuloop = false;
+                    menuSearch();
                     break;
                 }
                 else if (choice == 3)

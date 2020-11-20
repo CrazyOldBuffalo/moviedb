@@ -58,12 +58,12 @@ public class Users {
     }
 
     // Creates a new instance of an input scanner for the user Re-search Method
-    private static Scanner uSearchScanner() {
+    private static Scanner uReSearchScanner() {
         return new Scanner(System.in);
     }
 
     // Creates a new instance of an input scanner for the search Method
-    private static Scanner searchScanner() {
+    private static Scanner uSearchScanner() {
         return new Scanner(System.in);
     }
 
@@ -76,13 +76,13 @@ public class Users {
         // Loop ensures correct input before moving to next method
         while(uResearchloop)
         {
-            Scanner uResearchScanner = uSearchScanner();
+            Scanner uResearchScanner = uReSearchScanner();
             // Converts userinput to lower so only one condition has to be checked for
             String uResearch = uResearchScanner.nextLine().toLowerCase();
             // Allows user to search again
             if (uResearch.equals("y"))
             {
-                System.out.println("Yes");
+                System.out.println("Searching Again");
                 uResearchloop = false;
                 try {
                     uSearch();
@@ -99,7 +99,7 @@ public class Users {
             // Returns user to the menu
             else if (uResearch.equals("n"))
             {
-                System.out.println("No");
+                System.out.println("Returning to Menu");
                 uResearchloop = false;
                 Moviedb.menu();
             }
@@ -114,14 +114,14 @@ public class Users {
     // If it does, a method collects the details of the object from the map and outputs it
     public static void uSearch() throws IOException{
         Map<Integer, Users> userMap = readUserFile();
-        Scanner uSearch = searchScanner();
+        Scanner uSearch = uSearchScanner();
         System.out.println(USERLINE);
         System.out.println("Enter the User ID: ");
         System.out.println(USERLINE);
         int uSearchId = uSearch.nextInt();
         if (userMap.containsKey(uSearchId))
         {
-            System.out.println("");
+            System.out.println("User Id Found");
             int outId = ((Users) userMap.get(uSearchId)).getId();
             int outAge = ((Users) userMap.get(uSearchId)).getAge();
             String outGender = ((Users) userMap.get(uSearchId)).getGender();
