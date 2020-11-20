@@ -174,6 +174,7 @@ public class Movies {
             System.out.println("Movie Name: " + moviesMap.get(mSearchId).getName());
             System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
             System.out.println("Movie Url: " + moviesMap.get(mSearchId).getUrl());
+            System.out.println("Movie Genre: " + moviesMap.get(mSearchId).getGenre());
             mSearchAgain();
         }
         else {
@@ -213,6 +214,9 @@ public class Movies {
         return this.movieUrl;
     }
 
+    public String getGenre() {
+        return this.movieGenre;
+    }
     //Public Method to open and Read the file, Checks for errors
     public static void buildMovies() {
         try {
