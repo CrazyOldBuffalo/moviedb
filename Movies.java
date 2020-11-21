@@ -60,83 +60,83 @@ public class Movies {
     // Method For Assigning the genre Variable for the object in the above method
     // Changes the genre varaible depending on which index in the array is 1 and returns it for assignment
     private static String movieGenre(String[] movieInputs) {
-        String Genre;
+        String genre;
         if (movieInputs[5].equals("1"))
         {
-            Genre = "Action";
+            genre = "Action";
         }
         else if (movieInputs[6].equals("1"))
         {
-            Genre = "Adventure";
+            genre = "Adventure";
         }
         else if (movieInputs[7].equals("1"))
         {
-            Genre = "Animation";
+            genre = "Animation";
         }
         else if (movieInputs[8].equals("1"))
         {
-            Genre = "Childrens";
+            genre = "Childrens";
         }
         else if (movieInputs[9].equals("1"))
         {
-            Genre = "Comedy";
+            genre = "Comedy";
         }
         else if (movieInputs[10].equals("1"))
         {
-            Genre = "Crime";
+            genre = "Crime";
         }
         else if (movieInputs[11].equals("1"))
         {
-            Genre = "Documentary";
+            genre = "Documentary";
         }
         else if (movieInputs[12].equals("1"))
         {
-            Genre = "Drama";
+            genre = "Drama";
         }
         else if (movieInputs[13].equals("1"))
         {
-            Genre = "Fantasy";
+            genre = "Fantasy";
         }
         else if (movieInputs[14].equals("1"))
         {
-            Genre = "Film-Noir";
+            genre = "Film-Noir";
         }
         else if (movieInputs[15].equals("1"))
         {
-            Genre = "Horror";
+            genre = "Horror";
         }
         else if (movieInputs[16].equals("1"))
         {
-            Genre = "Musical";
+            genre = "Musical";
         }
         else if (movieInputs[17].equals("1"))
         {
-            Genre = "Mystery";
+            genre = "Mystery";
         }
         else if (movieInputs[18].equals("1"))
         {
-            Genre = "Romance";
+            genre = "Romance";
         }
         else if (movieInputs[19].equals("1"))
         {
-            Genre = "Sci-Fi";
+            genre = "Sci-Fi";
         }
         else if (movieInputs[20].equals("1"))
         {
-            Genre = "Thriller";
+            genre = "Thriller";
         }
         else if (movieInputs[21].equals("1"))
         {
-            Genre = "War";
+            genre = "War";
         }
         else if (movieInputs[22].equals("1"))
         {
-            Genre = "Western";
+            genre = "Western";
         }
         else {
-            Genre = "Not Found";
+            genre = "Not Found";
         }
-        return Genre;
+        return genre;
     }
 
     // Allows the user to search for a movie again using a loop

@@ -15,7 +15,7 @@ public class Moviedb {
     }
 
     // Private scanner method for menu Input
-    private static Scanner MenuScanner() {
+    private static Scanner menuScanner() {
         return new Scanner(System.in);
     }
 
@@ -45,7 +45,7 @@ public class Moviedb {
         }
         catch (IOException ioe)
         {
-            System.out.println("IO Error" );
+            System.out.println("User IO Error" );
         }
     }
 
@@ -55,17 +55,27 @@ public class Moviedb {
         }
         catch (IOException mioe)
         {
-            System.out.println("IO Error");
+            System.out.println("Movie IO Error");
         }
     }
 
-    public static void ratingSearch() {
+    public static void averageMovieSearch() {
         try {
             Ratings.averageMovieRating();
         }
         catch (IOException rioe)
         {
-            System.out.println("IO Error");
+            System.out.println("Rating IO Error");
+        }
+    }
+
+    public static void averageUserSearch() {
+        try {
+            Ratings.averageUserRating();
+        }
+        catch (IOException uioe)
+        {
+            System.out.println("Rating IO Error");
         }
     }
 
@@ -81,8 +91,10 @@ public class Moviedb {
         System.out.println(menuline);
         System.out.println("1:      Find User");
         System.out.println("2:      Find Movie");
-        System.out.println("3:      Find Ratings");
-        System.out.println("4:      Quit");
+        System.out.println("3:      Average Movie Rating");
+        System.out.println("4:      Average User Rating");
+        System.out.println("5:      Average User Rating of 2 Users");
+        System.out.println("6:      Quit");
         System.out.println(menuline);
         System.out.println("Make a Selection: ");
         System.out.println(menuline);
@@ -92,7 +104,7 @@ public class Moviedb {
     // Loops if the user enters an incorrect statement and catches errors if the user enters a character or symbol
     // User input takes them to a corresponding method for searching the Map
     public static void menu() {
-        Scanner menuin = MenuScanner();
+        Scanner menuin = menuScanner();
         boolean menuloop = true;
         while (menuloop)
         {
@@ -105,23 +117,31 @@ public class Moviedb {
                     System.out.println("User Search");
                     menuloop = false;
                     userSearch();
-                    break;
                 }
                 else if (choice == 2)
                 {
                     System.out.println("Movie Search");
                     menuloop = false;
                     movieSearch();
-                    break;
                 }
                 else if (choice == 3)
                 {
-                    System.out.println("Ratings");
+                    System.out.println("Average Movie Rating");
                     menuloop = false;
-                    ratingSearch();
-                    break;
+                    averageMovieSearch();
                 }
                 else if (choice == 4)
+                {
+                    System.out.println("Average User Rating");
+                    menuloop = false;
+                    averageUserSearch();
+                }
+                else if (choice == 5)
+                {
+                    System.out.println("Average Rating of 2 Users");
+                    System.out.println("NOT IMPLEMENTED YET!");
+                }
+                else if (choice == 6)
                 {
                     System.out.println("Quitting");
                     menuloop = false;
