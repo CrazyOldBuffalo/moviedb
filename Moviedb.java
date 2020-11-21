@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 
 public class Moviedb {
+
+    // Main Function for running each function required to build and use the program
     public static void main(String[] args) {        
         moviefunction();
         userfunction();
@@ -12,10 +14,12 @@ public class Moviedb {
         menu();
     }
 
+    // Private scanner method for menu Input
     private static Scanner MenuScanner() {
         return new Scanner(System.in);
     }
 
+    // Public functions used to create the class and use it's methods
     public static void userfunction() {
         Users.buildUsers();
     }
@@ -28,12 +32,13 @@ public class Moviedb {
         try {
             Ratings.readRatings();
         }
-        catch (FileNotFoundException RFE)
+        catch (FileNotFoundException rfe)
         {
             System.out.println("Ratings File Not found");
         }
     }
 
+    // Public Function to access the Search Functionality of each Class
     public static void userSearch() {
         try {
             Users.uSearch();
@@ -65,7 +70,8 @@ public class Moviedb {
     }
 
 
-
+    // Private method to display a menu to the user
+    // Called at the start of the menu method
     private static void displaymenu()
     {
         String menuline = "**********************";
@@ -82,6 +88,9 @@ public class Moviedb {
         System.out.println(menuline);
     }
 
+    // Menu Method that allows the user to enter their search term
+    // Loops if the user enters an incorrect statement and catches errors if the user enters a character or symbol
+    // User input takes them to a corresponding method for searching the Map
     public static void menu() {
         Scanner menuin = MenuScanner();
         boolean menuloop = true;

@@ -7,13 +7,18 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Movies {
+
+    // Private variables applied to the class when creating the object
     private int movieId;
     private String movieName;
     private String movieDate;
     private String movieUrl;
     private String movieGenre;
+
+    // Variable for outputting a line for the class when operating the functions
     public static final String MOVIELINE = "****************";
 
+    // Constructor for creating an object for the class
     public Movies(int id, String name, String date, String url, String genre) {
         this.movieId = id;
         this.movieName = name;
@@ -22,14 +27,21 @@ public class Movies {
         this.movieGenre = genre;
     }
 
+    // Method for creating a buffered reader using the file
     private static BufferedReader openMovieFile() throws FileNotFoundException {
         return new BufferedReader(new FileReader("data/movies.dat"));
     }
 
+    // Method for creating a Map of all the movies, using the ID as a key
+    // And an object for each movie
     private static Map<Integer, Movies> readMovieFile() throws IOException {
         Map<Integer, Movies> movieMap = new HashMap<Integer, Movies>();
         BufferedReader movieReader = openMovieFile();
         String line = null;
+
+        // Loops through the file until there are no more lines available
+        // Each line is Split using the parseLine method and assigned to a variable
+        // Each variable is then placed in the .put() as a class object
 
         while ((line = movieReader.readLine()) != null) {
             String[] movieInputs = parseLine(line);
@@ -40,10 +52,13 @@ public class Movies {
             String movieGenre = movieGenre(movieInputs);
             movieMap.put(movieId, new Movies(movieId, movieName, movieDate, movieUrl, movieGenre));
         }
+        // Closes and returns the reader.
         movieReader.close();
         return movieMap;
     }
 
+    // Method For Assigning the genre Variable for the object in the above method
+    // Changes the genre varaible depending on which index in the array is 1 and returns it for assignment
     private static String movieGenre(String[] movieInputs) {
         String Genre;
         if (movieInputs[5].equals("1"))
@@ -124,7 +139,9 @@ public class Movies {
         return Genre;
     }
 
-
+    // Allows the user to search for a movie again using a loop
+    // If user enters yes - the search function runs again
+    // Otherwise it returns them to the menu
     private static void mSearchAgain() {
         System.out.println(MOVIELINE);
         System.out.println("Would you Like to Search Again?     Y/N");
@@ -160,6 +177,11 @@ public class Movies {
         }
 
     }
+
+    // Method that searches for a MovieID from input
+    // Checks if the ID is in the Map and returns it using the integer as a key
+    // Otherwise prints that it couldn't be found
+    // Moves to the Re-Search function once complete
     public static void mSearch() throws IOException{
         Map <Integer, Movies> moviesMap = readMovieFile();
         Scanner mSearch = mSearchScanner();
@@ -176,14 +198,15 @@ public class Movies {
             System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
             System.out.println("Movie Url: " + moviesMap.get(mSearchId).getUrl());
             System.out.println("Movie Genre: " + moviesMap.get(mSearchId).getGenre());
-            mSearchAgain();
         }
         else {
             System.out.println("Movie Id Not Found");
-            mSearchAgain();
+            
         }
-
+        mSearchAgain();
     }
+
+    // Private method that splits the line in the scanner 
     private static String[] parseLine(String line) 
     {
         return line.split("::|\t|\\|");
@@ -218,6 +241,7 @@ public class Movies {
     public String getGenre() {
         return this.movieGenre;
     }
+    
     //Public Method to open and Read the file, Checks for errors
     public static void buildMovies() {
         try {
