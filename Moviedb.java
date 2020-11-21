@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,16 +8,30 @@ public class Moviedb {
     public static void main(String[] args) {        
         moviefunction();
         userfunction();
-        //ratingfunction();
+        ratingfunction();
         menu();
+    }
+
+    private static Scanner MenuScanner() {
+        return new Scanner(System.in);
     }
 
     public static void userfunction() {
         Users.buildUsers();
     }
-    
-    private static Scanner MenuScanner() {
-        return new Scanner(System.in);
+
+    public static void moviefunction() {
+        Movies.buildMovies();
+    }
+
+    public static void ratingfunction(){
+        try {
+            Ratings.readRatings();
+        }
+        catch (FileNotFoundException RFE)
+        {
+            System.out.println("Ratings File Not found");
+        }
     }
 
     public static void userSearch() {
@@ -29,7 +44,7 @@ public class Moviedb {
         }
     }
 
-    public static void menuSearch() {
+    public static void movieSearch() {
         try {
             Movies.mSearch();
         }
@@ -39,12 +54,17 @@ public class Moviedb {
         }
     }
 
-    public static void moviefunction() {
-        Movies.buildMovies();
+    public static void ratingSearch() {
+        try {
+            Ratings.averageMovieRating();
+        }
+        catch (IOException rioe)
+        {
+            System.out.println("IO Error");
+        }
     }
-    //public static void ratingfunction(){
-    //    Ratings.buildRatings();
-    //}
+
+
 
     private static void displaymenu()
     {
@@ -82,13 +102,14 @@ public class Moviedb {
                 {
                     System.out.println("Movie Search");
                     menuloop = false;
-                    menuSearch();
+                    movieSearch();
                     break;
                 }
                 else if (choice == 3)
                 {
                     System.out.println("Ratings");
                     menuloop = false;
+                    ratingSearch();
                     break;
                 }
                 else if (choice == 4)
