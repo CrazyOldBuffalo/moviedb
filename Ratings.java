@@ -50,6 +50,10 @@ public class Ratings {
     private static Scanner reAverageUser() {
         return new Scanner(System.in);
     }
+
+    private static Scanner twouser() {
+        return new Scanner (System.in);
+    }
     // Allows user to search for the Average Movie Rating again
     // converts input into lower and then compares
     // If input == y runs function again otherwise returns to menu
@@ -207,8 +211,22 @@ public class Ratings {
     }
 
     public static void twoUsers() throws IOException {
-        
-    }
+        List<Ratings> ratingList = readRatings();
+        List<Ratings> sortList = new ArrayList<>();
+        int usera = 1;
+        int userb = 2;
+        for (int i = 0; i < ratingList.size(); i++)
+        {
+            if (ratingList.get(i).getuserRatings() == usera || ratingList.get(i).getuserRatings() == userb)
+            {
+                sortList.add(ratingList.get(i));
+            }
+        }
+        for (int i = 0; i < ratingList.size(); i++)
+        {
+            System.out.println(sortList.get(i).getuserRatings() + " " + sortList.get(i).getmovieRatings() + " " + sortList.get(i).getratings());
+        }
+    }    
     // Public Method for creating the Rating Array List, each list item is created as an object of the class
     // Like before each line is read from the file and passed into the split method to fill an array
     // and then assigned to a variable bofore being stored as an object in the list

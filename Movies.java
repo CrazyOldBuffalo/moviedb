@@ -60,83 +60,84 @@ public class Movies {
     // Method For Assigning the genre Variable for the object in the above method
     // Changes the genre varaible depending on which index in the array is 1 and returns it for assignment
     private static String movieGenre(String[] movieInputs) {
-        String genre;
+        String genre = "";
+        StringBuilder regenre = new StringBuilder(genre);
         if (movieInputs[5].equals("1"))
         {
-            genre = "Action";
+            regenre.insert(0, "| Action |");
         }
-        else if (movieInputs[6].equals("1"))
+        if (movieInputs[6].equals("1"))
         {
-            genre = "Adventure";
+            regenre.insert(0, "| Adventure |");
         }
-        else if (movieInputs[7].equals("1"))
+        if (movieInputs[7].equals("1"))
         {
-            genre = "Animation";
+            regenre.insert(0, "| Animation |");
         }
-        else if (movieInputs[8].equals("1"))
+        if (movieInputs[8].equals("1"))
         {
-            genre = "Childrens";
+            regenre.insert(0, "| Childrens |");
         }
-        else if (movieInputs[9].equals("1"))
+        if (movieInputs[9].equals("1"))
         {
-            genre = "Comedy";
+            regenre.insert(0, "| Comedy |");
         }
-        else if (movieInputs[10].equals("1"))
+        if (movieInputs[10].equals("1"))
         {
-            genre = "Crime";
+            regenre.insert(0, "| Crime |");
         }
-        else if (movieInputs[11].equals("1"))
+        if (movieInputs[11].equals("1"))
         {
-            genre = "Documentary";
+            regenre.insert(0, "| Documentary |");
         }
-        else if (movieInputs[12].equals("1"))
+        if (movieInputs[12].equals("1"))
         {
-            genre = "Drama";
+            regenre.insert(0, "| Drama |");
         }
-        else if (movieInputs[13].equals("1"))
+        if (movieInputs[13].equals("1"))
         {
-            genre = "Fantasy";
+            regenre.insert(0, "| Fantasy |");
         }
-        else if (movieInputs[14].equals("1"))
+        if (movieInputs[14].equals("1"))
         {
-            genre = "Film-Noir";
+            regenre.insert(0, "| Film-Noir |");
         }
-        else if (movieInputs[15].equals("1"))
+        if (movieInputs[15].equals("1"))
         {
-            genre = "Horror";
+            regenre.insert(0, "| Horror |");
         }
-        else if (movieInputs[16].equals("1"))
+        if (movieInputs[16].equals("1"))
         {
-            genre = "Musical";
+            regenre.insert(0, "| Musical |");
         }
-        else if (movieInputs[17].equals("1"))
+        if (movieInputs[17].equals("1"))
         {
-            genre = "Mystery";
+            regenre.insert(0, "| Mystery |");
         }
-        else if (movieInputs[18].equals("1"))
+        if (movieInputs[18].equals("1"))
         {
-            genre = "Romance";
+            regenre.insert(0, "| Romance |");
         }
-        else if (movieInputs[19].equals("1"))
+        if (movieInputs[19].equals("1"))
         {
-            genre = "Sci-Fi";
+            regenre.insert(0, "| Sci-Fi |");
         }
-        else if (movieInputs[20].equals("1"))
+        if (movieInputs[20].equals("1"))
         {
-            genre = "Thriller";
+            regenre.insert(0, "| Thriller |");
         }
-        else if (movieInputs[21].equals("1"))
+        if (movieInputs[21].equals("1"))
         {
-            genre = "War";
+            regenre.insert(0, "| War |");
         }
-        else if (movieInputs[22].equals("1"))
+        if (movieInputs[22].equals("1"))
         {
-            genre = "Western";
+            regenre.insert(0, "| Western |");
         }
-        else {
-            genre = "Not Found";
+        if (regenre.length() == 0) {
+            regenre.replace(0, regenre.length(), "Not Found");
         }
-        return genre;
+        return regenre.toString();
     }
 
     // Allows the user to search for a movie again using a loop

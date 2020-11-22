@@ -65,7 +65,7 @@ public class Moviedb {
         }
         catch (IOException rioe)
         {
-            System.out.println("Rating IO Error");
+            System.out.println("Movie Rating IO Error");
         }
     }
 
@@ -75,7 +75,17 @@ public class Moviedb {
         }
         catch (IOException uioe)
         {
-            System.out.println("Rating IO Error");
+            System.out.println("User Rating IO Error");
+        }
+    }
+
+    public static void twoUserSearch() {
+        try {
+            Ratings.twoUsers();
+        }
+        catch (IOException tuioe)
+        {
+            System.out.println("Two User Rating IO Error");
         }
     }
 
@@ -139,6 +149,8 @@ public class Moviedb {
                 else if (choice == 5)
                 {
                     System.out.println("Average Rating of 2 Users");
+                    menuloop = false;
+                    twoUserSearch();
                     System.out.println("NOT IMPLEMENTED YET!");
                 }
                 else if (choice == 6)
