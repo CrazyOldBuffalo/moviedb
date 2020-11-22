@@ -53,7 +53,7 @@ public class Ratings {
     // Allows user to search for the Average Movie Rating again
     // converts input into lower and then compares
     // If input == y runs function again otherwise returns to menu
-    private static void reAverageMovieRating() throws FileNotFoundException{
+    private static void reAverageMovieRating() throws IOException{
         System.out.println(RATINGLINE);
         System.out.println("Would you like to Calculate a new Movie Average?    Y/N");
         System.out.println(RATINGLINE);
@@ -80,12 +80,12 @@ public class Ratings {
         }
     }
     // Public method for calculating the average Rating of a movie
-    // Creates an instance of the List and loops through the file when a movieId is specitfied
+    // Creates an instance of the List and loops through the file when a movieId is specified
     // Reads through the ratingList and every Instance is added to another list called AverageMovie.
     // Checks if the new list is empty and if so throws an error
     // Otherwise the list loops through the new list and adds to the total (All Ratings added together)
     // The Total is then divided by the size of the new list to create the average and it is then outputted
-    public static void averageMovieRating() throws FileNotFoundException{
+    public static void averageMovieRating() throws IOException{
         List<Ratings> ratingList = readRatings();
         List<Integer> averageMovie = new ArrayList<Integer>();
         boolean movieRatingLoop = true;
@@ -117,7 +117,8 @@ public class Ratings {
                         movieTotal += averageMovie.get(i);
                     }
                     int movieAverage = (movieTotal / averageMovie.size());
-                    System.out.println("Average Rating for Movie " + userMovieRatingID + " is: " + movieAverage);
+                    Movies.ratingsMovies(userMovieRatingID);
+                    System.out.println("Average Rating is: " + movieAverage);
                     movieRatingLoop = false;
                     reAverageMovieRating();
                 }
@@ -129,7 +130,9 @@ public class Ratings {
         }
     }
 
-    private static void reAverageUserRating() throws FileNotFoundException{
+    // Re-Search method for allowing the user to search for the average user rating
+    // Loops until user enters Y or N
+    private static void reAverageUserRating() throws IOException{
         System.out.println(RATINGLINE);
         System.out.println("Would you like to calculate a new User Average?     Y/N");
         System.out.println(RATINGLINE);
@@ -154,7 +157,9 @@ public class Ratings {
         }
     }
 
-    public static void averageUserRating() throws FileNotFoundException{
+    // Method for calulcating the average user rating a User gives
+    // Works in same way as Movie Rating but checks if the USERID matches the searchterm instead
+    public static void averageUserRating() throws IOException{
         List<Ratings> ratingList = readRatings();
         List<Integer> averageUser = new ArrayList<Integer>();
         boolean averageUserLoop = true;
@@ -178,6 +183,7 @@ public class Ratings {
                 {
                     System.out.println("No Ratings found for UserID");
                     averageUserLoop = false;
+                    reAverageUserRating();
 
                 }
                 else {
@@ -186,8 +192,10 @@ public class Ratings {
                         userTotal += averageUser.get(i);
                     }
                     int userAverage = userTotal / averageUser.size();
-                    System.out.println("Average Rating for UserID " + ratingUserId + " is: " + userAverage);
+                    Users.userRating(ratingUserId);
+                    System.out.println("Average Rating is: " + userAverage);
                     averageUserLoop = false;
+                    reAverageUserRating();
                 }
             }
             catch (InputMismatchException uME)
@@ -196,6 +204,10 @@ public class Ratings {
             }
         }
 
+    }
+
+    public static void twoUsers() throws IOException {
+        
     }
     // Public Method for creating the Rating Array List, each list item is created as an object of the class
     // Like before each line is read from the file and passed into the split method to fill an array

@@ -176,4 +176,13 @@ public class Users {
             System.exit(0);
         }
     }
+
+	public static void userRating(Integer ratingUserID) throws IOException{
+        Map<Integer, Users> userMap = readUserFile();
+        System.out.println("UserID : " + userMap.get(ratingUserID).getId());
+        System.out.println("User Age: " + userMap.get(ratingUserID).getAge());
+        System.out.println("User Gender: " + userMap.get(ratingUserID).getGender());
+        System.out.println("User Occupation: " + userMap.get(ratingUserID).getOccup());
+        System.out.println("User Zip: " + userMap.get(ratingUserID).getZip());
+	}
 }

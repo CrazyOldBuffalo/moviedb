@@ -206,6 +206,16 @@ public class Movies {
         mSearchAgain();
     }
 
+    public static void ratingsMovies(Integer userMovieID) throws IOException{
+        Map<Integer, Movies> movieMap = readMovieFile();
+        System.out.println("Movie Id: " + movieMap.get(userMovieID).getID());
+        System.out.println("Movie Name: " + movieMap.get(userMovieID).getName());
+        System.out.println("Movie Date: " + movieMap.get(userMovieID).getDate());
+        System.out.println("Movie URL: " + movieMap.get(userMovieID).getUrl());
+        System.out.println("Movie Genre: " + movieMap.get(userMovieID).getGenre());
+
+    }
+
     // Private method that splits the line in the scanner 
     private static String[] parseLine(String line) 
     {
