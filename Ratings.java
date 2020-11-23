@@ -211,22 +211,72 @@ public class Ratings {
     }
 
     public static void twoUsers() throws IOException {
+        Scanner twoUserScanner = twouser();
         List<Ratings> ratingList = readRatings();
-        List<Ratings> sortList = new ArrayList<>();
-        int usera = 1;
-        int userb = 2;
-        for (int i = 0; i < ratingList.size(); i++)
+        List<Integer> sortLista = new ArrayList<Integer>();
+        List<Integer> sortListb = new ArrayList<Integer>();
+        List<Integer> sortedList = new ArrayList<Integer>();
+        boolean twoUserLoop = true;
+        while(twoUserLoop)
         {
-            if (ratingList.get(i).getuserRatings() == usera || ratingList.get(i).getuserRatings() == userb)
-            {
-                sortList.add(ratingList.get(i));
+            try {
+                System.out.println("Enter the First userID: ");
+                int usera = twoUserScanner.nextInt();
+                System.out.println("Enter the Second userID: ");
+                int userb = twoUserScanner.nextInt();
+                twoUserLoop = false;
+                for (int i = 0; i < ratingList.size(); i++)
+                {
+                    if (ratingList.get(i).getuserRatings() == usera)
+                    {
+                        sortLista.add(ratingList.get(i).getmovieRatings());
+                    }
+                    if (ratingList.get(i).getuserRatings() == userb)
+                    {
+                        sortListb.add(ratingList.get(i).getmovieRatings());
+                    }
+                }
+                if (sortLista.size() > sortListb.size())
+                {
+                    for (int i = 0; i < sortLista.size(); i++)
+                    {
+                        if (sortLista.contains(i) && sortListb.contains(i))
+                        {
+                            sortedList.add(sortLista.get(i));
+                        }
+                    }
+                }
+                else if (sortListb.size() > sortLista.size())
+                {
+                    for (int i = 0; i < sortListb.size(); i++)
+                    {
+                        if (sortLista.contains(i) && sortListb.contains(i))
+                        {
+                            sortedList.add(sortListb.get(i));
+                        }
+                    }
+                }
+                if (sortedList.isEmpty())
+                {
+                    System.out.println("No ratings for Both users found for a movieID");
+                }
+                else
+                {
+                    System.out.println("User ");
+                    for (int i = 0; i < sortedList.size(); i++)
+                    {
+                        System.out.println(sortedList.get(i));
+                    }
+                }
             }
-        }
-        for (int i = 0; i < ratingList.size(); i++)
-        {
-            System.out.println(sortList.get(i).getuserRatings() + " " + sortList.get(i).getmovieRatings() + " " + sortList.get(i).getratings());
-        }
-    }    
+            catch (InputMismatchException tuIME)
+            {
+                System.out.println("Please Enter A valid Number");
+                twoUserScanner.next();
+            }
+        } 
+    }  
+        
     // Public Method for creating the Rating Array List, each list item is created as an object of the class
     // Like before each line is read from the file and passed into the split method to fill an array
     // and then assigned to a variable bofore being stored as an object in the list

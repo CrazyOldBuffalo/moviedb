@@ -151,7 +151,6 @@ public class Moviedb {
                     System.out.println("Average Rating of 2 Users");
                     menuloop = false;
                     twoUserSearch();
-                    System.out.println("NOT IMPLEMENTED YET!");
                 }
                 else if (choice == 6)
                 {
