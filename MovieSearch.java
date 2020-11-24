@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
@@ -7,6 +9,10 @@ public class MovieSearch {
     // Variable for outputting a line for the class when operating the functions
     private static String movieLine = "****************";
 
+    // Private Method for Returning and Creating a Buffered Writer to add each search to a file
+    private static BufferedWriter movieSearchFile() throws IOException{
+        return new BufferedWriter(new FileWriter("MovieSearchFile.txt", true));
+    }
     // Allows the user to search for a movie again using a loop
     // If user enters yes - the search function runs again
     // Otherwise it returns them to the menu
@@ -53,6 +59,7 @@ public class MovieSearch {
     public static void mSearch() throws IOException{
         Map <Integer, Movies> moviesMap = Movies.buildMovieSearch();
         Scanner mSearch = mSearchScanner();
+        BufferedWriter movieFileWriter = movieSearchFile();
         System.out.println(movieLine);
         System.out.println("Enter a MovieID: ");
         System.out.println(movieLine);
@@ -66,9 +73,12 @@ public class MovieSearch {
             System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
             System.out.println("Movie Url: " + moviesMap.get(mSearchId).getUrl());
             System.out.println("Movie Genre: " + moviesMap.get(mSearchId).getGenre());
+            movieFileWriter.append("You Searched for: " + mSearchId + "\n" + "Movie Id: " + moviesMap.get(mSearchId).getID() + "\n" + "Movie Name: " + moviesMap.get(mSearchId).getName() + "\n" + "Movie Date: " + moviesMap.get(mSearchId).getDate() + "\n" + "Movie Url: " + moviesMap.get(mSearchId).getUrl() + "\n" + "Movie Genre: " + moviesMap.get(mSearchId).getGenre() + "\n"); 
+            movieFileWriter.append("===========================================================================" + "\n");
+            movieFileWriter.close();
         }
         else {
-            System.out.println("Movie Id Not Found");
+            System.out.println("Movie Id Not Found" );
             
         }
         mSearchAgain();

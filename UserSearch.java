@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,6 +10,10 @@ public class UserSearch {
     // Creates a new instance of an input scanner for the search Method
     private static Scanner userSearchScanner() {
         return new Scanner(System.in);
+    }
+    
+    private static BufferedWriter userSearchFile() throws IOException{
+        return new BufferedWriter(new FileWriter("UserSearchFile.txt", true));
     }
 
     // Method that checks if the user would like to search for a user id again
@@ -57,6 +63,7 @@ public class UserSearch {
     // If it does, a method collects the details of the object from the map and outputs it
     public static void uSearch() throws IOException{
         Map<Integer, Users> userMap = Users.buildUserFile();
+        BufferedWriter uSearchFileWriter = userSearchFile();
         Scanner uSearch = userSearchScanner();
         System.out.println(userLine);
         System.out.println("Enter the User ID: ");
@@ -71,13 +78,18 @@ public class UserSearch {
             String outOccup = ((Users) userMap.get(uSearchId)).getOccup();
             String outZip = ((Users) userMap.get(uSearchId)).getZip();
             System.out.println("User ID: " + outId + "\n" + "User Age: " + outAge + "\n" + "User Gender: " + outGender + "\n" + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip);
-            uSearchAgain();
+            uSearchFileWriter.append("You Searched for: " + uSearchId + "\n" + "User ID: " + outId + "\n" + "User Age: " + outAge + "\n" +"UserGender: " + "\n" + outGender + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip + "\n");
+            uSearchFileWriter.append("=================================================================" + "\n");
+            uSearchFileWriter.close();
         }
         else {
             System.out.println("UserId Could not be found");
-            uSearchAgain();
+ 
         }
+        uSearchAgain();
     }
+
+    
     public static void userRating(Integer ratingUserID) throws IOException{
         Map<Integer, Users> userMap = Users.buildUserFile();
         System.out.println("UserID : " + userMap.get(ratingUserID).getId());

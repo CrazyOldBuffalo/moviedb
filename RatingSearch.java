@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -14,6 +16,9 @@ public class RatingSearch {
         return new Scanner(System.in);
     }
 
+    private static BufferedWriter ratingSearchFile() throws IOException {
+        return new BufferedWriter(new FileWriter("RatingSearchFile.txt", true));
+    }
     // Allows user to search for the Average Movie Rating again converts input into lower and then 
     // compares If input == y runs function again otherwise returns to menu
     private static void reAverageMovieRating() throws IOException{
@@ -51,6 +56,7 @@ public class RatingSearch {
     public static void averageMovieRating() throws IOException {
         List<Ratings> ratingList = Ratings.readRatings();
         List<Integer> averageMovie = new ArrayList<Integer>();
+        BufferedWriter movieRatingFileWriter = ratingSearchFile();
         boolean movieRatingLoop = true;
         while (movieRatingLoop)
         {
@@ -82,6 +88,9 @@ public class RatingSearch {
                     int movieAverage = (movieTotal / averageMovie.size());
                     MovieSearch.ratingsMovies(userMovieRatingID);
                     System.out.println("Average Rating is: " + movieAverage);
+                    movieRatingFileWriter.append("You Searched for average Movie Ratings by MovieID: " + userMovieRatingID + "\n" + "Average Movie Rating is: " + movieAverage + "\n");
+                    movieRatingFileWriter.append("========================================================" + "\n");
+                    movieRatingFileWriter.close();
                     movieRatingLoop = false;
                     reAverageMovieRating();
                 }
@@ -124,6 +133,7 @@ public class RatingSearch {
     public static void averageUserRating() throws IOException{
         List<Ratings> ratingList = Ratings.readRatings();
         List<Integer> averageUser = new ArrayList<Integer>();
+        BufferedWriter userRatingFileWriter = ratingSearchFile();
         boolean averageUserLoop = true;
         while (averageUserLoop)
         {
@@ -155,6 +165,9 @@ public class RatingSearch {
                     int userAverage = userTotal / averageUser.size();
                     UserSearch.userRating(ratingUserId);
                     System.out.println("Average Rating is: " + userAverage);
+                    userRatingFileWriter.append("You Searched for Average Rating by UserID: " + ratingUserId + "\n" + "Average Rating = " + userAverage + "\n");
+                    userRatingFileWriter.append("========================================================" + "\n");
+                    userRatingFileWriter.close();
                     averageUserLoop = false;
                     reAverageUserRating();
                 }
@@ -166,6 +179,29 @@ public class RatingSearch {
         }
     }
     
+    private static void reTwoUsers() throws IOException{
+        System.out.println(ratingLine);
+        System.out.println("Would you like to find the number of films rated by the same user again?     Y/N");
+        System.out.println(ratingLine);
+        boolean reAverageUserLoop = true;
+        while (reAverageUserLoop)
+        {
+            Scanner reAverageUserScanner = ratingsScanner();
+            String reAverageUser = reAverageUserScanner.nextLine().toLowerCase();
+            if (reAverageUser.equals("y"))
+            {
+                System.out.println("Searching Again");
+                reAverageUserLoop = false;
+                twoUsers();
+            }
+            else if (reAverageUser.equals("n"))
+            {
+                System.out.println("Returning to Menu");
+                reAverageUserLoop = false;
+                Moviedb.menu();
+            }
+        }
+    }
     // Allows the user to enter the ID of 2 users, Checks if they're actual numbers (returns them back if not)
     // Loops through all ratings in the list for the userID, and adds it to a seperate sortList containing the movieID rated by each user
     // Once each list is complete it checks for all movieID's stored in both Lists by looping through whichever list is longer 
@@ -173,6 +209,7 @@ public class RatingSearch {
     // if so it prints out that no items were found, otherwise it prints the contents of the list.
     public static void twoUsers() throws IOException {
         Scanner twoUserScanner = ratingsScanner();
+        BufferedWriter twoUserFileWriter = ratingSearchFile();
         List<Ratings> ratingList = Ratings.readRatings();
         List<Integer> sortLista = new ArrayList<Integer>();
         List<Integer> sortListb = new ArrayList<Integer>();
@@ -217,18 +254,33 @@ public class RatingSearch {
                         }
                     }
                 }
+                else if (sortLista.size() == sortListb.size())
+                {
+                    for (int i = 0; i < sortListb.size(); i++)
+                    {
+                        if (sortLista.contains(i) && sortListb.contains(i))
+                        {
+                            sortedList.add(sortLista.get(i));
+                        }
+                    }
+                }
                 if (sortedList.isEmpty())
                 {
                     System.out.println("No ratings for Both users found for a movieID");
                 }
                 else
                 {
-                    System.out.println("User " + usera + " & User " + userb + "Have Rated: ");
+                    System.out.println("User " + usera + " & User " + userb + " Have Rated: ");
+                    System.out.println(sortedList.size() + " Files in Total!");
                     System.out.println(ratingLine);
+                    twoUserFileWriter.append("You Searched for: " + usera + " & " + userb + "\n" + "They Rated: " + sortedList.size() + " Files in Total!" + "\n");
                     for (int i = 0; i < sortedList.size(); i++)
                     {
                         System.out.println("Movie Id: " + sortedList.get(i) + "| Movie Name: " + MovieSearch.twoUserMovies(sortedList.get(i)));
+                        twoUserFileWriter.append("Movie ID: " + sortedList.get(i) + "| Movie Name: " + MovieSearch.twoUserMovies(sortedList.get(i)) + "\n");
                     }
+                    twoUserFileWriter.append("=================================================================" + "\n");
+                    twoUserFileWriter.close();
                 }
             }
             catch (InputMismatchException tuIME)
@@ -237,5 +289,6 @@ public class RatingSearch {
                 twoUserScanner.next();
             }
         } 
+        reTwoUsers();
     }
 }
