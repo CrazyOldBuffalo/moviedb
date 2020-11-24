@@ -1,4 +1,4 @@
-b5028276 - Tomasz Boberek
+b5028276 - Tomasz Boberek © 2020
 Moviedb.java Assignment
 Network Applications Development - Assignment 1
 =================================================================================
