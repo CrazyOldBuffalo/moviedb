@@ -41,7 +41,7 @@ public class Moviedb {
     // Public Function to access the Search Functionality of each Class
     public static void userSearch() {
         try {
-            Users.uSearch();
+            UserSearch.uSearch();
         }
         catch (IOException ioe)
         {
@@ -51,7 +51,7 @@ public class Moviedb {
 
     public static void movieSearch() {
         try {
-            Movies.mSearch();
+            MovieSearch.mSearch();
         }
         catch (IOException mioe)
         {
@@ -61,7 +61,7 @@ public class Moviedb {
 
     public static void averageMovieSearch() {
         try {
-            Ratings.averageMovieRating();
+            RatingSearch.averageMovieRating();
         }
         catch (IOException rioe)
         {
@@ -71,7 +71,7 @@ public class Moviedb {
 
     public static void averageUserSearch() {
         try {
-            Ratings.averageUserRating();
+            RatingSearch.averageUserRating();
         }
         catch (IOException uioe)
         {
@@ -81,7 +81,7 @@ public class Moviedb {
 
     public static void twoUserSearch() {
         try {
-            Ratings.twoUsers();
+            RatingSearch.twoUsers();
         }
         catch (IOException tuioe)
         {

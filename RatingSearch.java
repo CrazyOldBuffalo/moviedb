@@ -153,7 +153,7 @@ public class RatingSearch {
                         userTotal += averageUser.get(i);
                     }
                     int userAverage = userTotal / averageUser.size();
-                    Users.userRating(ratingUserId);
+                    UserSearch.userRating(ratingUserId);
                     System.out.println("Average Rating is: " + userAverage);
                     averageUserLoop = false;
                     reAverageUserRating();
