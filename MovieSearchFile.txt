@@ -1,0 +1,21 @@
+You Searched for: 80
+Movie Id: 80
+Movie Name: Hot Shots! Part Deux (1993)
+Movie Date: 01-Jan-1993
+Movie Url: http://us.imdb.com/M/title-exact?Hot%20Shots!%20Part%20Deux%20(1993)
+Movie Genre: | Western || Crime || Adventure |
+===========================================================================
+You Searched for: 12
+Movie Id: 12
+Movie Name: Usual Suspects, The (1995)
+Movie Date: 14-Aug-1995
+Movie Url: http://us.imdb.com/M/title-exact?Usual%20Suspects,%20The%20(1995)
+Movie Genre: | War || Documentary |
+===========================================================================
+You Searched for: 56
+Movie Id: 56
+Movie Name: Pulp Fiction (1994)
+Movie Date: 01-Jan-1994
+Movie Url: http://us.imdb.com/M/title-exact?Pulp%20Fiction%20(1994)
+Movie Genre: | Fantasy || Documentary |
+===========================================================================

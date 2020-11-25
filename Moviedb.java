@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,7 +12,6 @@ public class Moviedb {
         userfunction();
         ratingfunction();
         menu();
-        
     }
 
     // Private scanner method for menu Input

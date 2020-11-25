@@ -248,7 +248,7 @@ public class RatingSearch {
                 {
                     for (int i = 0; i < sortListb.size(); i++)
                     {
-                        if (sortLista.contains(i) && sortListb.contains(i))
+                        if (sortLista.contains(sortListb.get(i)) && sortListb.contains(sortListb.get(i)))
                         {
                             sortedList.add(sortListb.get(i));
                         }
@@ -256,9 +256,9 @@ public class RatingSearch {
                 }
                 else if (sortLista.size() == sortListb.size())
                 {
-                    for (int i = 0; i < sortListb.size(); i++)
+                    for (int i = 0; i < sortLista.size(); i++)
                     {
-                        if (sortLista.contains(i) && sortListb.contains(i))
+                        if (sortLista.contains(sortLista.get(i)) && sortListb.contains(sortLista.get(i)))
                         {
                             sortedList.add(sortLista.get(i));
                         }

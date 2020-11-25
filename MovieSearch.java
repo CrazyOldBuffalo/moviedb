@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -60,28 +61,41 @@ public class MovieSearch {
         Map <Integer, Movies> moviesMap = Movies.buildMovieSearch();
         Scanner mSearch = mSearchScanner();
         BufferedWriter movieFileWriter = movieSearchFile();
-        System.out.println(movieLine);
-        System.out.println("Enter a MovieID: ");
-        System.out.println(movieLine);
-        int mSearchId = mSearch.nextInt();
-        if (moviesMap.containsKey(mSearchId))
+
+        boolean mSearchLoop = true;
+        while (mSearchLoop)
         {
-            System.out.println("Movie Id Found");
-            System.out.println(movieLine);
-            System.out.println("Movie Id: " + moviesMap.get(mSearchId).getID());
-            System.out.println("Movie Name: " + moviesMap.get(mSearchId).getName());
-            System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
-            System.out.println("Movie Url: " + moviesMap.get(mSearchId).getUrl());
-            System.out.println("Movie Genre: " + moviesMap.get(mSearchId).getGenre());
-            movieFileWriter.append("You Searched for: " + mSearchId + "\n" + "Movie Id: " + moviesMap.get(mSearchId).getID() + "\n" + "Movie Name: " + moviesMap.get(mSearchId).getName() + "\n" + "Movie Date: " + moviesMap.get(mSearchId).getDate() + "\n" + "Movie Url: " + moviesMap.get(mSearchId).getUrl() + "\n" + "Movie Genre: " + moviesMap.get(mSearchId).getGenre() + "\n"); 
-            movieFileWriter.append("===========================================================================" + "\n");
-            movieFileWriter.close();
+            try {
+                System.out.println(movieLine);
+                System.out.println("Enter a MovieID: ");
+                System.out.println(movieLine);
+                int mSearchId = mSearch.nextInt();
+                if (moviesMap.containsKey(mSearchId))
+                {
+                    mSearchLoop = false;
+                    System.out.println("Movie Id Found");
+                    System.out.println(movieLine);
+                    System.out.println("Movie Id: " + moviesMap.get(mSearchId).getID());
+                    System.out.println("Movie Name: " + moviesMap.get(mSearchId).getName());
+                    System.out.println("Movie Date: " + moviesMap.get(mSearchId).getDate());
+                    System.out.println("Movie Url: " + moviesMap.get(mSearchId).getUrl());
+                    System.out.println("Movie Genre: " + moviesMap.get(mSearchId).getGenre());
+                    movieFileWriter.append("You Searched for: " + mSearchId + "\n" + "Movie Id: " + moviesMap.get(mSearchId).getID() + "\n" + "Movie Name: " + moviesMap.get(mSearchId).getName() + "\n" + "Movie Date: " + moviesMap.get(mSearchId).getDate() + "\n" + "Movie Url: " + moviesMap.get(mSearchId).getUrl() + "\n" + "Movie Genre: " + moviesMap.get(mSearchId).getGenre() + "\n"); 
+                    movieFileWriter.append("===========================================================================" + "\n");
+                    movieFileWriter.close();
+                }
+                else {
+                    mSearchLoop = false;
+                    System.out.println("Movie Id Not Found" );            
+                }
+                mSearchAgain();
+            }
+            catch (InputMismatchException mSearchIME)
+            {
+                System.out.println("Enter A valid MovieId");
+                mSearch.next();
+            }
         }
-        else {
-            System.out.println("Movie Id Not Found" );
-            
-        }
-        mSearchAgain();
     }
 
     public static void ratingsMovies(Integer userMovieID) throws IOException{

@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -65,28 +66,40 @@ public class UserSearch {
         Map<Integer, Users> userMap = Users.buildUserFile();
         BufferedWriter uSearchFileWriter = userSearchFile();
         Scanner uSearch = userSearchScanner();
-        System.out.println(userLine);
-        System.out.println("Enter the User ID: ");
-        System.out.println(userLine);
-        int uSearchId = uSearch.nextInt();
-        if (userMap.containsKey(uSearchId))
+        boolean uSearchLoop = true;
+        while (uSearchLoop)
         {
-            System.out.println("User Id Found");
-            int outId = ((Users) userMap.get(uSearchId)).getId();
-            int outAge = ((Users) userMap.get(uSearchId)).getAge();
-            String outGender = ((Users) userMap.get(uSearchId)).getGender();
-            String outOccup = ((Users) userMap.get(uSearchId)).getOccup();
-            String outZip = ((Users) userMap.get(uSearchId)).getZip();
-            System.out.println("User ID: " + outId + "\n" + "User Age: " + outAge + "\n" + "User Gender: " + outGender + "\n" + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip);
-            uSearchFileWriter.append("You Searched for: " + uSearchId + "\n" + "User ID: " + outId + "\n" + "User Age: " + outAge + "\n" +"UserGender: " + "\n" + outGender + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip + "\n");
-            uSearchFileWriter.append("=================================================================" + "\n");
-            uSearchFileWriter.close();
+            try {
+                System.out.println(userLine);
+                System.out.println("Enter the User ID: ");
+                System.out.println(userLine);
+                int uSearchId = uSearch.nextInt();
+                if (userMap.containsKey(uSearchId))
+                {
+                    uSearchLoop = false;
+                    System.out.println("User Id Found");
+                    int outId = userMap.get(uSearchId).getId();
+                    int outAge = userMap.get(uSearchId).getAge();
+                    String outGender = userMap.get(uSearchId).getGender();
+                    String outOccup = userMap.get(uSearchId).getOccup();
+                    String outZip = userMap.get(uSearchId).getZip();
+                    System.out.println("User ID: " + outId + "\n" + "User Age: " + outAge + "\n" + "User Gender: " + outGender + "\n" + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip);
+                    uSearchFileWriter.append("You Searched for: " + uSearchId + "\n" + "User ID: " + outId + "\n" + "User Age: " + outAge + "\n" +"UserGender: " + "\n" + outGender + "User Occupation: " + outOccup + "\n" + "User Zip: " + outZip + "\n");
+                    uSearchFileWriter.append("=================================================================" + "\n");
+                    uSearchFileWriter.close();
+                }
+                else {
+                    uSearchLoop = false;
+                    System.out.println("UserId Could not be found");
+                }
+                uSearchAgain();
+            }
+            catch(InputMismatchException uSearchIME)
+            {
+                System.out.println("Please Enter A valid ID");
+                uSearch.next();
+            }
         }
-        else {
-            System.out.println("UserId Could not be found");
- 
-        }
-        uSearchAgain();
     }
 
     

@@ -1,0 +1,33 @@
+You Searched for average Movie Ratings by MovieID: 678
+Average Movie Rating is: 2
+========================================================
+You Searched for average Movie Ratings by MovieID: 56
+Average Movie Rating is: 4
+========================================================
+You Searched for Average Rating by UserID: 34
+Average Rating = 4
+========================================================
+You Searched for Average Rating by UserID: 34
+Average Rating = 4
+========================================================
+You Searched for: 1 & 2
+They Rated: 18 Files in Total!
+Movie ID: 272| Movie Name: Good Will Hunting (1997)
+Movie ID: 258| Movie Name: Contact (1997)
+Movie ID: 14| Movie Name: Postino, Il (1994)
+Movie ID: 242| Movie Name: Kolya (1996)
+Movie ID: 10| Movie Name: Richard III (1995)
+Movie ID: 255| Movie Name: My Best Friend's Wedding (1997)
+Movie ID: 100| Movie Name: Fargo (1996)
+Movie ID: 269| Movie Name: Full Monty, The (1997)
+Movie ID: 1| Movie Name: Toy Story (1995)
+Movie ID: 257| Movie Name: Men in Black (1997)
+Movie ID: 237| Movie Name: Jerry Maguire (1996)
+Movie ID: 50| Movie Name: Star Wars (1977)
+Movie ID: 127| Movie Name: Godfather, The (1972)
+Movie ID: 25| Movie Name: Birdcage, The (1996)
+Movie ID: 251| Movie Name: Shall We Dance? (1996)
+Movie ID: 19| Movie Name: Antonia's Line (1995)
+Movie ID: 111| Movie Name: Truth About Cats & Dogs, The (1996)
+Movie ID: 13| Movie Name: Mighty Aphrodite (1995)
+=================================================================
